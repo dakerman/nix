@@ -12,6 +12,7 @@
   };
 
   outputs = { nixpkgs-unstable, ... }@inputs:
+  {
       nixosConfigurations = {
         bits = import ./bits/default.nix { inherit inputs; };
       };
@@ -20,5 +21,5 @@
       #  "birgerrydback@bits" =
       #    mkHomeConfiguration ./hosts/bits/user-birgerrydback.nix;
       #};
-    #};
+  };
 }
