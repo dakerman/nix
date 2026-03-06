@@ -7,49 +7,74 @@
 
   programs.vscode = {
     enable = true;
-    extensions = with pkgs.vscode-extensions; [
-      jnoortheen.nix-ide
-    ];
-    userSettings = {
-      "nix.formatterPath" = "nixfmt";
-      "[nix]" = {
-        "editor.defaultFormatter" = "jnoortheen.nix-ide";
-        "editor.formatOnSave" = true;
+    profiles.default = {
+      extensions = with pkgs.vscode-extensions; [
+        jnoortheen.nix-ide
+      ];
+      userSettings = {
+        "nix.formatterPath" = "nixfmt";
+        "[nix]" = {
+          "editor.defaultFormatter" = "jnoortheen.nix-ide";
+          "editor.formatOnSave" = true;
+        };
       };
     };
   };
 
   programs.git = {
     enable = true;
-    userName = "dakerman";
-    userEmail = "a.daniel.akerman@gmail.com";
-    delta.enable = true;
-    aliases = {
-      aa = "add .";
-      au = "add -u";
-      br = "checkout -b";
-      ca = "commit --amend";
-      cm = "commit -m";
-      co = "checkout";
-      d = "diff";
-      dn = "diff --name-only";
-      f = "fetch -pt";
-      fp = "push --force-with-lease";
-      lgo = "log --oneline --graph";
-      ln = "log -n";
-      lo = "log --oneline";
-      lon = "log --oneline -n";
-      p = "push";
-      r = "rebase";
-      rh = "reset --hard";
-      s = "status";
-      tree = "log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all";
-    };
-    extraConfig = {
+    settings = {
+      user.name = "dakerman";
+      user.email = "a.daniel.akerman@gmail.com";
+      alias = {
+        aa = "add .";
+        au = "add -u";
+        br = "checkout -b";
+        ca = "commit --amend";
+        cm = "commit -m";
+        co = "checkout";
+        d = "diff";
+        dn = "diff --name-only";
+        f = "fetch -pt";
+        fp = "push --force-with-lease";
+        lgo = "log --oneline --graph";
+        ln = "log -n";
+        lo = "log --oneline";
+        lon = "log --oneline -n";
+        p = "push";
+        r = "rebase";
+        rh = "reset --hard";
+        s = "status";
+        tree = "log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all";
+      };
       push.autoSetupRemote = true;
       url."ssh://git@github.com".insteadOf = "https://github.com";
     };
   };
+
+  programs.delta = {
+    enable = true;
+    enableGitIntegration = true;
+  };
+
+  programs.ssh = {
+    enable = true;
+    enableDefaultConfig = false;
+    matchBlocks."*" = {
+      addKeysToAgent = "yes";
+    };
+  };
+
+  home.packages = with pkgs; [
+    kdePackages.ksshaskpass
+  ];
+
+  home.sessionVariables = {
+    SSH_ASKPASS = "${pkgs.kdePackages.ksshaskpass}/bin/ksshaskpass";
+    SSH_ASKPASS_REQUIRE = "prefer";
+  };
+
+  programs.alacritty.enable = true;
 
   programs.home-manager.enable = true;
 

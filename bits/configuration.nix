@@ -92,6 +92,8 @@
   # Install firefox.
   programs.firefox.enable = true;
 
+  programs.ssh.startAgent = true;
+
   fingerprint.enable = true;
 
   # Allow unfree packages
