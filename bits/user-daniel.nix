@@ -19,6 +19,38 @@
     };
   };
 
+  programs.git = {
+    enable = true;
+    userName = "dakerman";
+    userEmail = "a.daniel.akerman@gmail.com";
+    delta.enable = true;
+    aliases = {
+      aa = "add .";
+      au = "add -u";
+      br = "checkout -b";
+      ca = "commit --amend";
+      cm = "commit -m";
+      co = "checkout";
+      d = "diff";
+      dn = "diff --name-only";
+      f = "fetch -pt";
+      fp = "push --force-with-lease";
+      lgo = "log --oneline --graph";
+      ln = "log -n";
+      lo = "log --oneline";
+      lon = "log --oneline -n";
+      p = "push";
+      r = "rebase";
+      rh = "reset --hard";
+      s = "status";
+      tree = "log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all";
+    };
+    extraConfig = {
+      push.autoSetupRemote = true;
+      url."ssh://git@github.com".insteadOf = "https://github.com";
+    };
+  };
+
   programs.home-manager.enable = true;
 
   programs.plasma.enable = true;
