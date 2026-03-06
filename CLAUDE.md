@@ -22,6 +22,9 @@ nix flake update
 
 # Update a single input (e.g. nixpkgs)
 nix flake update nixpkgs
+
+# Format all .nix files
+nix fmt
 ```
 
 ## Architecture

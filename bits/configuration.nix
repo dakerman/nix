@@ -98,11 +98,11 @@
 
   # vscode
   programs.vscode = {
-   enable = true;
-   extensions = with pkgs.vscode-extensions; [
-   bbenoist.nix
-  ]; 
-  }; 
+    enable = true;
+    extensions = with pkgs.vscode-extensions; [
+      jnoortheen.nix-ide
+    ];
+  };
 
   fingerprint.enable = true;
 
@@ -112,9 +112,10 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-  slack
-  git
-  pkgs-unstable.claude-code
+    slack
+    git
+    nixfmt-rfc-style
+    pkgs-unstable.claude-code
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
