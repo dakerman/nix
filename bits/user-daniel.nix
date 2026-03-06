@@ -20,4 +20,20 @@
   };
 
   programs.home-manager.enable = true;
+
+  programs.plasma.enable = true;
+
+  programs.plasma.input.touchpads = [
+    {
+      name = "SNSL0028:00 2C2F:0028 Touchpad";
+      vendorId = "2c2f";
+      productId = "0028";
+      rightClickMethod = "twoFingers";
+      tapToClick = true;
+      scrollMethod = "twoFingers";
+      disableWhileTyping = true;
+      accelerationProfile = "none";
+      pointerSpeed = 0;
+    }
+  ];
 }

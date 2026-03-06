@@ -17,6 +17,7 @@ inputs.nixpkgs.lib.nixosSystem {
         useUserPackages = true;
         backupFileExtension = "backup";
         extraSpecialArgs = { inherit inputs pkgs-unstable; };
+        sharedModules = [ inputs.plasma-manager.homeManagerModules.plasma-manager ];
         users.daniel = import ./user-daniel.nix;
       };
     }
