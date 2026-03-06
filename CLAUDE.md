@@ -43,8 +43,10 @@ This is a NixOS flake configuration for a single host called `bits` (x86_64-linu
   - `fingerprint/` — custom module; adds `fingerprint.enable` and `fingerprint.driver` options (`goodix` | `elan` | `generic`)
   - `touchpad/` — custom module; adds `touchpad.enable` option
 
-**Home Manager** is wired in as a NixOS module in `bits/default.nix` (inline config block with `useGlobalPkgs = true`, `useUserPackages = true`). User-level config (apps, dotfiles, settings) goes in `bits/user-daniel.nix`. System-level config stays in `bits/configuration.nix`.
+**Home Manager** is wired in as a NixOS module in `bits/default.nix` (inline config block with `useGlobalPkgs = true`, `useUserPackages = true`). User-level config (apps, dotfiles, settings, input devices via plasma-manager) goes in `bits/user-daniel.nix`. System-level config stays in `bits/configuration.nix`.
 
 **Adding new system-wide modules:** create a subdirectory under `modules/system/` with a `default.nix` and add it to the imports list in `modules/system/default.nix`.
+
+**Plasma input settings** (`programs.plasma.input.touchpads`, etc.) require logging out and back in to take effect after `nixos-rebuild switch`.
 
 **Using unstable packages:** access via the `pkgs-unstable` argument (already available in any module due to `specialArgs`). Example in use: `pkgs-unstable.claude-code`.

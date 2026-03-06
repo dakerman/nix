@@ -57,6 +57,7 @@
     enableGitIntegration = true;
   };
 
+  # Setup ssh and use ksshaskpass
   programs.ssh = {
     enable = true;
     enableDefaultConfig = false;
@@ -74,12 +75,14 @@
     SSH_ASKPASS_REQUIRE = "prefer";
   };
 
+  # Terminal
   programs.alacritty.enable = true;
 
+  # Home manager and KDE plasma manager
   programs.home-manager.enable = true;
-
   programs.plasma.enable = true;
 
+  # Plasma touchpad settings
   programs.plasma.input.touchpads = [
     {
       name = "SNSL0028:00 2C2F:0028 Touchpad";
@@ -91,6 +94,7 @@
       disableWhileTyping = true;
       accelerationProfile = "none";
       pointerSpeed = 0;
+      naturalScroll = true;
     }
   ];
 }
