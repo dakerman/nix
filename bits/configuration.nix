@@ -94,6 +94,10 @@
 
   programs.ssh.startAgent = true;
 
+  environment.sessionVariables = {
+    SSH_ASKPASS_REQUIRE = "prefer";
+  };
+
   fingerprint.enable = true;
 
   # Allow unfree packages
