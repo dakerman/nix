@@ -37,10 +37,13 @@ This is a NixOS flake configuration for a single host called `bits` (x86_64-linu
 
 **Module layout:**
 - `bits/configuration.nix` — host-specific system config (users, packages, services, locale, boot)
+- `bits/user-daniel.nix` — Home Manager config for the `daniel` user (VS Code, user packages, dotfiles)
 - `bits/hardware-configuration.nix` — hardware scan output (LUKS device, filesystems)
 - `modules/system/` — reusable NixOS modules auto-imported by `modules/system/default.nix`
   - `fingerprint/` — custom module; adds `fingerprint.enable` and `fingerprint.driver` options (`goodix` | `elan` | `generic`)
   - `touchpad/` — custom module; adds `touchpad.enable` option
+
+**Home Manager** is wired in as a NixOS module in `bits/default.nix` (inline config block with `useGlobalPkgs = true`, `useUserPackages = true`). User-level config (apps, dotfiles, settings) goes in `bits/user-daniel.nix`. System-level config stays in `bits/configuration.nix`.
 
 **Adding new system-wide modules:** create a subdirectory under `modules/system/` with a `default.nix` and add it to the imports list in `modules/system/default.nix`.
 

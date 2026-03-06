@@ -6,9 +6,20 @@ inputs.nixpkgs.lib.nixosSystem {
   system = "x86_64-linux";
   specialArgs = { inherit inputs pkgs-unstable; };
   modules = [
-     ../modules/system
-     ./hardware-configuration.nix
-     ./configuration.nix
+    ../modules/system
+    ./hardware-configuration.nix
+    ./configuration.nix
+    inputs.home-manager.nixosModules.home-manager
+
+    {
+      home-manager = {
+        useGlobalPkgs = true;
+        useUserPackages = true;
+        backupFileExtension = "backup";
+        extraSpecialArgs = { inherit inputs pkgs-unstable; };
+        users.daniel = import ./user-daniel.nix;
+      };
+    }
   ];
  }
 

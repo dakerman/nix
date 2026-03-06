@@ -96,14 +96,6 @@
   # Install firefox.
   programs.firefox.enable = true;
 
-  # vscode
-  programs.vscode = {
-    enable = true;
-    extensions = with pkgs.vscode-extensions; [
-      jnoortheen.nix-ide
-    ];
-  };
-
   fingerprint.enable = true;
 
   # Allow unfree packages
