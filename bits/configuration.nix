@@ -100,6 +100,10 @@
 
   fingerprint.enable = true;
 
+  # Enable Thunderbolt device authorization (bolt daemon).
+  # Required for monitors/docks that provide display and network over Thunderbolt/USB4.
+  services.hardware.bolt.enable = true;
+
   power-management = {
     enable = true;
     cpuVendor = "intel";  # Intel Core Ultra 7 258V
@@ -121,6 +125,7 @@
   environment.systemPackages = with pkgs; [
     slack
     git
+    jq
     nixfmt-rfc-style
     pkgs-unstable.claude-code
   ];
