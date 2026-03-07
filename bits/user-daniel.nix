@@ -132,6 +132,12 @@
     "kwin"."KrohnkiteShiftRight" = "Meta+Shift+Right";
     "kwin"."KrohnkiteShiftUp" = "Meta+Shift+Up";
     "kwin"."KrohnkiteShiftDown" = "Meta+Shift+Down";
+
+    # Krohnkite: layouts
+    "kwin"."KrohnkiteColumnsLayout" = "Meta+C";
+    "kwin"."KrohnkiteBTreeLayout" = "Meta+T";
+    "kwin"."KrohnkiteMonocleLayout" = "Meta+F";  # fullscreen (one window)
+    "kwin"."KrohnkiteRotate" = "Meta+R";         # flip split direction in BTree
   };
 
   # Plasma touchpad settings
