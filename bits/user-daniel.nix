@@ -87,6 +87,13 @@
   programs.plasma.configFile."kwinrc"."Plugins"."krohnkiteEnabled" = true;
   programs.plasma.configFile."kwinrc"."Desktops"."Number" = 4;
 
+  # Krohnkite gaps
+  programs.plasma.configFile."kwinrc"."Script-krohnkite"."screenGapBetween" = 8;
+  programs.plasma.configFile."kwinrc"."Script-krohnkite"."screenGapTop" = 8;
+  programs.plasma.configFile."kwinrc"."Script-krohnkite"."screenGapBottom" = 8;
+  programs.plasma.configFile."kwinrc"."Script-krohnkite"."screenGapLeft" = 8;
+  programs.plasma.configFile."kwinrc"."Script-krohnkite"."screenGapRight" = 8;
+
   programs.plasma.shortcuts = {
     # Virtual desktop switching: Meta+1-4
     "kwin"."Switch to Desktop 1" = "Meta+1";
