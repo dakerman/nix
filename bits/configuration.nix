@@ -100,6 +100,11 @@
 
   fingerprint.enable = true;
 
+  power-management = {
+    enable = true;
+    cpuVendor = "intel";  # Intel Core Ultra 7 258V
+  };
+
   graphics = {
     enable = true;
     intel = {
