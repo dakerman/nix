@@ -68,6 +68,7 @@
 
   home.packages = with pkgs; [
     kdePackages.ksshaskpass
+    kdePackages.krohnkite
   ];
 
   home.sessionVariables = {
@@ -81,6 +82,50 @@
   # Home manager and KDE plasma manager
   programs.home-manager.enable = true;
   programs.plasma.enable = true;
+
+  # Krohnkite tiling
+  programs.plasma.configFile."kwinrc"."Plugins"."krohnkiteEnabled" = true;
+  programs.plasma.configFile."kwinrc"."Desktops"."Number" = 4;
+
+  programs.plasma.shortcuts = {
+    # Virtual desktop switching: Meta+1-4
+    "kwin"."Switch to Desktop 1" = "Meta+1";
+    "kwin"."Switch to Desktop 2" = "Meta+2";
+    "kwin"."Switch to Desktop 3" = "Meta+3";
+    "kwin"."Switch to Desktop 4" = "Meta+4";
+
+    # Send window to virtual desktop: Meta+Ctrl+1-4
+    # (Meta+Shift+Number broken on Swedish keyboard — Shift changes the keysym)
+    "kwin"."Window to Desktop 1" = "Meta+Ctrl+1";
+    "kwin"."Window to Desktop 2" = "Meta+Ctrl+2";
+    "kwin"."Window to Desktop 3" = "Meta+Ctrl+3";
+    "kwin"."Window to Desktop 4" = "Meta+Ctrl+4";
+
+    # Close window
+    "kwin"."Window Close" = "Meta+Q";
+
+    # Clear KWin shortcuts that conflict with Krohnkite defaults
+    "kwin"."Edit Tiles" = [];                        # freed from Meta+T
+    "kwin"."Show Desktop" = [];                      # freed from Meta+D
+    "kwin"."Quick Tile Window to the Left" = [];     # freed from Meta+Left
+    "kwin"."Quick Tile Window to the Right" = [];    # freed from Meta+Right
+    "kwin"."Quick Tile Window to the Top" = [];      # freed from Meta+Up
+    "kwin"."Quick Tile Window to the Bottom" = [];   # freed from Meta+Down
+    "kwin"."Maximize Window" = [];                   # freed from Meta+Up
+
+    # Krohnkite: focus navigation (arrow keys)
+    # Must be under "kwin" because Krohnkite registers as a KWin script (kwin component)
+    "kwin"."KrohnkiteFocusLeft" = "Meta+Left";
+    "kwin"."KrohnkiteFocusRight" = "Meta+Right";
+    "kwin"."KrohnkiteFocusUp" = "Meta+Up";
+    "kwin"."KrohnkiteFocusDown" = "Meta+Down";
+
+    # Krohnkite: move/swap window (arrow keys)
+    "kwin"."KrohnkiteShiftLeft" = "Meta+Shift+Left";
+    "kwin"."KrohnkiteShiftRight" = "Meta+Shift+Right";
+    "kwin"."KrohnkiteShiftUp" = "Meta+Shift+Up";
+    "kwin"."KrohnkiteShiftDown" = "Meta+Shift+Down";
+  };
 
   # Plasma touchpad settings
   programs.plasma.input.touchpads = [
