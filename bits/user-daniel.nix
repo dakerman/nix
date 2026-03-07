@@ -76,6 +76,17 @@
     SSH_ASKPASS_REQUIRE = "prefer";
   };
 
+  programs.firefox = {
+    enable = true;
+    profiles.default = {
+      isDefault = true;
+      settings = {
+        # Enable VA-API hardware video decoding (uses Intel iHD driver via LIBVA_DRIVER_NAME)
+        "media.ffmpeg.vaapi.enabled" = true;
+      };
+    };
+  };
+
   # Terminal
   programs.alacritty.enable = true;
 

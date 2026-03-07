@@ -100,6 +100,14 @@
 
   fingerprint.enable = true;
 
+  graphics = {
+    enable = true;
+    intel = {
+      enable = true;
+      generation = "arc";  # Intel Arc 140V (Lunar Lake, Core Ultra 258V)
+    };
+  };
+
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
