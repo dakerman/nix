@@ -139,10 +139,17 @@
     "kwin"."KrohnkiteFocusDown" = "Meta+Down";
 
     # Krohnkite: move/swap window (arrow keys)
-    "kwin"."KrohnkiteShiftLeft" = "Meta+Shift+Left";
-    "kwin"."KrohnkiteShiftRight" = "Meta+Shift+Right";
-    "kwin"."KrohnkiteShiftUp" = "Meta+Shift+Up";
-    "kwin"."KrohnkiteShiftDown" = "Meta+Shift+Down";
+    # Meta+Ctrl+Arrow to match the Meta=focus / Meta+Ctrl=move pattern
+    "kwin"."KrohnkiteShiftLeft" = "Meta+Ctrl+Left";
+    "kwin"."KrohnkiteShiftRight" = "Meta+Ctrl+Right";
+    "kwin"."KrohnkiteShiftUp" = "Meta+Ctrl+Up";
+    "kwin"."KrohnkiteShiftDown" = "Meta+Ctrl+Down";
+
+    # Screens: Meta=focus, Meta+Ctrl=move  (mirrors desktop and window patterns)
+    "kwin"."Switch to Next Screen" = "Meta+.";
+    "kwin"."Switch to Previous Screen" = "Meta+,";
+    "kwin"."Window to Next Screen" = "Meta+Ctrl+.";
+    "kwin"."Window to Previous Screen" = "Meta+Ctrl+,";
 
     # Krohnkite: layouts
     "kwin"."KrohnkiteColumnsLayout" = "Meta+C";
