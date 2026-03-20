@@ -122,6 +122,10 @@
     # Close window
     "kwin"."Window Close" = "Meta+Q";
 
+    # Disable accidental maximize/minimize via PageUp/PageDown
+    "kwin"."Window Maximize" = [];
+    "kwin"."Window Minimize" = [];
+
     # Clear KWin shortcuts that conflict with Krohnkite defaults
     "kwin"."Edit Tiles" = [];                        # freed from Meta+T
     "kwin"."Show Desktop" = [];                      # freed from Meta+D
