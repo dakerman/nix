@@ -163,7 +163,7 @@
     {
       location = "top";
       height = 32;
-      hiding = "none";
+      hiding = "normalpanel";
       widgets = [
         {
           pager.general = {
