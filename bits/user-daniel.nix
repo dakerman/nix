@@ -198,6 +198,22 @@
     }
   ];
 
+  # Hide title bars on all windows
+  programs.plasma.window-rules = [
+    {
+      description = "No title bars";
+      match = {
+        window-types = [ "normal" ];
+      };
+      apply = {
+        noborder = {
+          value = true;
+          apply = "force";
+        };
+      };
+    }
+  ];
+
   # Plasma touchpad settings
   programs.plasma.input.touchpads = [
     {
