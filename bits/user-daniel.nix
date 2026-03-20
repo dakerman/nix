@@ -158,6 +158,42 @@
     "kwin"."KrohnkiteRotate" = "Meta+R";         # flip split direction in BTree
   };
 
+  # Minimal top panel
+  programs.plasma.panels = [
+    {
+      location = "top";
+      height = 32;
+      hiding = "none";
+      widgets = [
+        {
+          pager.general = {
+            displayedText = "desktopNumber";
+            showWindowOutlines = true;
+            showApplicationIconsOnWindowOutlines = false;
+          };
+        }
+        "org.kde.plasma.panelspacer"
+        {
+          systemTray.items = {
+            shown = [
+              "org.kde.plasma.battery"
+              "org.kde.plasma.networkmanagement"
+              "org.kde.plasma.volume"
+              "org.kde.plasma.bluetooth"
+              "org.kde.plasma.brightness"
+            ];
+          };
+        }
+        {
+          digitalClock = {
+            time.format = "24h";
+            calendar.firstDayOfWeek = "monday";
+          };
+        }
+      ];
+    }
+  ];
+
   # Plasma touchpad settings
   programs.plasma.input.touchpads = [
     {
