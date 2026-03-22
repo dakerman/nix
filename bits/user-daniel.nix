@@ -116,6 +116,20 @@
     nix-direnv.enable = true;
   };
 
+  # Let Home Manager manage bash
+  programs.bash.enable = true;
+
+  # Context-aware shell prompt (git, nix, languages, etc.)
+  programs.starship = {
+    enable = true;
+    settings = {
+      directory = {
+        truncation_length = 5;
+        truncate_to_repo = false;
+      };
+    };
+  };
+
   # Terminal
   programs.alacritty.enable = true;
 
