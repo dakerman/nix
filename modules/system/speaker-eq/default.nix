@@ -13,15 +13,15 @@ let
   # Boost low-mids for warmth, cut upper-mids to reduce harshness.
   # PipeWire duplicates this mono graph for each channel automatically.
   bands = [
-    { name = "low_shelf"; label = "bq_lowshelf"; freq = 120;  q = 0.9; gain = 2.0;  } # Add warmth
-    { name = "eq_160";    label = "bq_peaking";  freq = 160;  q = 1.6; gain = 2.6;  } # Add body
-    { name = "eq_200";    label = "bq_peaking";  freq = 200;  q = 1.6; gain = 1.4;  } # Low-mid fill
-    { name = "eq_300";    label = "bq_peaking";  freq = 300;  q = 1.6; gain = 0.5;  } # Slight fill
+    { name = "low_shelf"; label = "bq_lowshelf"; freq = 120;  q = 0.9; gain = 3.5;  } # Add warmth
+    { name = "eq_160";    label = "bq_peaking";  freq = 160;  q = 1.6; gain = 4.0;  } # Add body
+    { name = "eq_200";    label = "bq_peaking";  freq = 200;  q = 1.6; gain = 2.5;  } # Low-mid fill
+    { name = "eq_300";    label = "bq_peaking";  freq = 300;  q = 1.6; gain = 1.0;  } # Slight fill
     { name = "eq_500";    label = "bq_peaking";  freq = 500;  q = 1.6; gain = -1.3; } # Reduce boxiness
-    { name = "eq_800";    label = "bq_peaking";  freq = 800;  q = 1.6; gain = -3.7; } # Cut harshness
-    { name = "eq_1k";     label = "bq_peaking";  freq = 1000; q = 1.6; gain = -4.1; } # Cut metallic ring
-    { name = "eq_2k";     label = "bq_peaking";  freq = 2000; q = 1.6; gain = -3.2; } # Reduce shrillness
-    { name = "eq_4k";     label = "bq_peaking";  freq = 4000; q = 1.6; gain = -1.7; } # Tame brightness
+    { name = "eq_800";    label = "bq_peaking";  freq = 800;  q = 1.6; gain = -5.0; } # Cut harshness
+    { name = "eq_1k";     label = "bq_peaking";  freq = 1000; q = 1.6; gain = -5.5; } # Cut metallic ring
+    { name = "eq_2k";     label = "bq_peaking";  freq = 2000; q = 1.6; gain = -4.5; } # Reduce shrillness
+    { name = "eq_4k";     label = "bq_peaking";  freq = 4000; q = 1.6; gain = -2.5; } # Tame brightness
   ];
 
   mkNode = band: {
