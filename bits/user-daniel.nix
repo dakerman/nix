@@ -24,8 +24,8 @@
   programs.git = {
     enable = true;
     settings = {
-      user.name = "dakerman";
-      user.email = "a.daniel.akerman@gmail.com";
+      user.name = "daniel-bitsbi";
+      user.email = "daniel.akerman@bits.bi";
       alias = {
         aa = "add .";
         au = "add -u";
@@ -50,6 +50,15 @@
       push.autoSetupRemote = true;
       url."ssh://git@github.com".insteadOf = "https://github.com";
     };
+    includes = [
+      {
+        condition = "gitdir:~/workspace/nix/";
+        contents = {
+          user.name = "dakerman";
+          user.email = "a.daniel.akerman@gmail.com";
+        };
+      }
+    ];
   };
 
   programs.delta = {
