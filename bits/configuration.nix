@@ -43,15 +43,15 @@
     LC_TIME = "sv_SE.UTF-8";
   };
 
-  # Enable the X11 windowing system.
-  # You can disable this if you're only using the Wayland session.
+  # Despite the name, services.xserver.* is used by both X11 and Wayland on NixOS.
+  # This enables the display server infrastructure that SDDM/Plasma 6 depend on.
   services.xserver.enable = true;
 
   # Enable the KDE Plasma Desktop Environment.
   services.displayManager.sddm.enable = true;
   services.desktopManager.plasma6.enable = true;
 
-  # Configure keymap in X11
+  # Keyboard layout — applies to both X11 and Wayland (KWin reads XKB config).
   services.xserver.xkb = {
     layout = "se";
     variant = "";
