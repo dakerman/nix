@@ -131,7 +131,17 @@
   };
 
   # Terminal
-  programs.alacritty.enable = true;
+  programs.alacritty = {
+    enable = true;
+    settings.keyboard.bindings = [
+      # Meta+K to clear terminal
+      {
+        key = "K";
+        mods = "Super";
+        chars = "\\u0015clear\\u000d";
+      }
+    ];
+  };
 
   # Home manager and KDE plasma manager
   programs.home-manager.enable = true;
@@ -166,17 +176,17 @@
     "kwin"."Window Close" = "Meta+Q";
 
     # Disable accidental maximize/minimize via PageUp/PageDown
-    "kwin"."Window Maximize" = [];
-    "kwin"."Window Minimize" = [];
+    "kwin"."Window Maximize" = [ ];
+    "kwin"."Window Minimize" = [ ];
 
     # Clear KWin shortcuts that conflict with Krohnkite defaults
-    "kwin"."Edit Tiles" = [];                        # freed from Meta+T
-    "kwin"."Show Desktop" = [];                      # freed from Meta+D
-    "kwin"."Quick Tile Window to the Left" = [];     # freed from Meta+Left
-    "kwin"."Quick Tile Window to the Right" = [];    # freed from Meta+Right
-    "kwin"."Quick Tile Window to the Top" = [];      # freed from Meta+Up
-    "kwin"."Quick Tile Window to the Bottom" = [];   # freed from Meta+Down
-    "kwin"."Maximize Window" = [];                   # freed from Meta+Up
+    "kwin"."Edit Tiles" = [ ]; # freed from Meta+T
+    "kwin"."Show Desktop" = [ ]; # freed from Meta+D
+    "kwin"."Quick Tile Window to the Left" = [ ]; # freed from Meta+Left
+    "kwin"."Quick Tile Window to the Right" = [ ]; # freed from Meta+Right
+    "kwin"."Quick Tile Window to the Top" = [ ]; # freed from Meta+Up
+    "kwin"."Quick Tile Window to the Bottom" = [ ]; # freed from Meta+Down
+    "kwin"."Maximize Window" = [ ]; # freed from Meta+Up
 
     # Krohnkite: focus navigation (arrow keys)
     # Must be under "kwin" because Krohnkite registers as a KWin script (kwin component)
@@ -201,8 +211,8 @@
     # Krohnkite: layouts
     "kwin"."KrohnkiteColumnsLayout" = "Meta+C";
     "kwin"."KrohnkiteBTreeLayout" = "Meta+T";
-    "kwin"."KrohnkiteMonocleLayout" = "Meta+F";  # fullscreen (one window)
-    "kwin"."KrohnkiteRotate" = "Meta+R";         # flip split direction in BTree
+    "kwin"."KrohnkiteMonocleLayout" = "Meta+F"; # fullscreen (one window)
+    "kwin"."KrohnkiteRotate" = "Meta+R"; # flip split direction in BTree
   };
 
   # Minimal top panel
