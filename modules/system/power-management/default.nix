@@ -46,10 +46,10 @@ with lib;
 
     # Lid close behavior.
     # KDE PowerDevil handles screen locking; logind handles suspend.
-    services.logind = {
-      lidSwitch = "suspend";              # Lid close on battery: suspend
-      lidSwitchExternalPower = "suspend"; # Lid close on AC: suspend
-      lidSwitchDocked = "ignore";         # Lid close when docked: ignore
+    services.logind.settings.Login = {
+      HandleLidSwitch = "suspend";              # Lid close on battery: suspend
+      HandleLidSwitchExternalPower = "suspend"; # Lid close on AC: suspend
+      HandleLidSwitchDocked = "ignore";         # Lid close when docked: ignore
     };
 
     # TLP conflicts with power-profiles-daemon (enabled by KDE Plasma by default)
