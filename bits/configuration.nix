@@ -100,6 +100,7 @@
 
   bluetooth.enable = true;
   fingerprint.enable = true;
+  speaker-eq.enable = true;
 
   # Enable Thunderbolt device authorization (bolt daemon).
   # Required for monitors/docks that provide display and network over Thunderbolt/USB4.
