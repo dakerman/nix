@@ -70,8 +70,20 @@
   programs.ssh = {
     enable = true;
     enableDefaultConfig = false;
-    matchBlocks."*" = {
-      addKeysToAgent = "yes";
+    matchBlocks = {
+      "github.com" = {
+        hostname = "github.com";
+        identityFile = "~/.ssh/id_ed25519_bits";
+        addKeysToAgent = "yes";
+      };
+      "github-personal" = {
+        hostname = "github.com";
+        identityFile = "~/.ssh/id_ed25519";
+        addKeysToAgent = "yes";
+      };
+      "*" = {
+        addKeysToAgent = "yes";
+      };
     };
   };
 
