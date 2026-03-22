@@ -79,7 +79,7 @@
       };
       "github-personal" = {
         hostname = "github.com";
-        identityFile = "~/.ssh/id_ed25519";
+        identityFile = "~/.ssh/id_rsa";
         identitiesOnly = true;
         addKeysToAgent = "yes";
       };
