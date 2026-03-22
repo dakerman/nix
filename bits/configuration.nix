@@ -133,6 +133,7 @@
     jq
     nixfmt-rfc-style
     pkgs-unstable.claude-code
+    btop
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
