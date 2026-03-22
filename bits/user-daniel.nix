@@ -74,11 +74,13 @@
       "github.com" = {
         hostname = "github.com";
         identityFile = "~/.ssh/id_ed25519_bits";
+        identitiesOnly = true;
         addKeysToAgent = "yes";
       };
       "github-personal" = {
         hostname = "github.com";
         identityFile = "~/.ssh/id_ed25519";
+        identitiesOnly = true;
         addKeysToAgent = "yes";
       };
       "*" = {
