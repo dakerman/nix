@@ -12,6 +12,7 @@
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
+  boot.loader.systemd-boot.configurationLimit = 20;
   boot.loader.efi.canTouchEfiVariables = true;
 
   boot.initrd.luks.devices."luks-af657024-09f5-4039-9d50-8574d7726cbe".device = "/dev/disk/by-uuid/af657024-09f5-4039-9d50-8574d7726cbe";
@@ -160,6 +161,15 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "25.11"; # Did you read the comment?
+
+  # Automatically garbage-collect old store paths weekly, keeping the last 100 generations.
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than +100";
+  };
+  # Deduplicate identical files in the Nix store to save disk space.
+  nix.optimise.automatic = true;
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 }
