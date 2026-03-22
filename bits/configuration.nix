@@ -98,6 +98,7 @@
     SSH_ASKPASS_REQUIRE = "prefer";
   };
 
+  bluetooth.enable = true;
   fingerprint.enable = true;
 
   # Enable Thunderbolt device authorization (bolt daemon).
