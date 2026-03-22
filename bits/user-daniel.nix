@@ -87,6 +87,12 @@
     };
   };
 
+  # Auto-load Nix dev environments when entering project directories
+  programs.direnv = {
+    enable = true;
+    nix-direnv.enable = true;
+  };
+
   # Terminal
   programs.alacritty.enable = true;
 
