@@ -86,7 +86,7 @@
   users.users.daniel = {
     isNormalUser = true;
     description = "Daniel Åkerman";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" ];
   };
 
   # Install firefox.
@@ -118,6 +118,8 @@
       generation = "arc";  # Intel Arc 140V (Lunar Lake, Core Ultra 258V)
     };
   };
+
+  virtualisation.docker.enable = true;
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
