@@ -93,6 +93,10 @@
   # Install firefox.
   programs.firefox.enable = true;
 
+  programs.nano.nanorc = ''
+    set linenumbers
+  '';
+
   programs.ssh.startAgent = true;
 
   environment.sessionVariables = {
