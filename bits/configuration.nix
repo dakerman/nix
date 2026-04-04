@@ -2,20 +2,26 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, pkgs-unstable, ... }:
+{
+  config,
+  pkgs,
+  pkgs-unstable,
+  ...
+}:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-#      ./hardware-configuration.nix
-    ];
+  imports = [
+    # Include the results of the hardware scan.
+    #      ./hardware-configuration.nix
+  ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.systemd-boot.configurationLimit = 20;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  boot.initrd.luks.devices."luks-af657024-09f5-4039-9d50-8574d7726cbe".device = "/dev/disk/by-uuid/af657024-09f5-4039-9d50-8574d7726cbe";
+  boot.initrd.luks.devices."luks-af657024-09f5-4039-9d50-8574d7726cbe".device =
+    "/dev/disk/by-uuid/af657024-09f5-4039-9d50-8574d7726cbe";
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
@@ -87,14 +93,22 @@
   users.users.daniel = {
     isNormalUser = true;
     description = "Daniel Åkerman";
-    extraGroups = [ "networkmanager" "wheel" "docker" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+      "docker"
+    ];
   };
 
   # Install firefox.
   programs.firefox.enable = true;
 
+  # Nano settings
   programs.nano.nanorc = ''
     set linenumbers
+    set autoindent
+    set tabsize 2
+    set tabstospaces
   '';
 
   programs.ssh.startAgent = true;
@@ -113,14 +127,14 @@
 
   power-management = {
     enable = true;
-    cpuVendor = "intel";  # Intel Core Ultra 7 258V
+    cpuVendor = "intel"; # Intel Core Ultra 7 258V
   };
 
   graphics = {
     enable = true;
     intel = {
       enable = true;
-      generation = "arc";  # Intel Arc 140V (Lunar Lake, Core Ultra 258V)
+      generation = "arc"; # Intel Arc 140V (Lunar Lake, Core Ultra 258V)
     };
   };
 
@@ -176,5 +190,8 @@
   # Deduplicate identical files in the Nix store to save disk space.
   nix.optimise.automatic = true;
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 }
