@@ -101,18 +101,45 @@
 
   programs.firefox = {
     enable = true;
-    profiles.default = {
-      isDefault = true;
-      settings = {
-        # Enable VA-API hardware video decoding (uses Intel iHD driver via LIBVA_DRIVER_NAME)
-        "media.ffmpeg.vaapi.enabled" = true;
-        # Restore previous session (open tabs) on startup
-        "browser.startup.page" = 3;
-        # Disable "ask to save passwords"
-        "signon.rememberSignons" = false;
-        # Disable "save and autofill payment methods"
-        "extensions.formautofill.creditCards.enabled" = false;
+    profiles =
+      let
+        sharedSettings = {
+          # Enable VA-API hardware video decoding (uses Intel iHD driver via LIBVA_DRIVER_NAME)
+          "media.ffmpeg.vaapi.enabled" = true;
+          # Restore previous session (open tabs) on startup
+          "browser.startup.page" = 3;
+          # Disable "ask to save passwords"
+          "signon.rememberSignons" = false;
+          # Disable "save and autofill payment methods"
+          "extensions.formautofill.creditCards.enabled" = false;
+        };
+      in
+      {
+        work = {
+          id = 0;
+          isDefault = true;
+          settings = sharedSettings;
+        };
+        private = {
+          id = 1;
+          settings = sharedSettings;
+        };
       };
+  };
+
+  # Firefox profile launchers (for KRunner)
+  xdg.desktopEntries = {
+    firefox-work = {
+      name = "Firefox (Work)";
+      exec = "firefox -P work";
+      icon = "firefox";
+      terminal = false;
+    };
+    firefox-private = {
+      name = "Firefox (Private)";
+      exec = "firefox -P private";
+      icon = "firefox";
+      terminal = false;
     };
   };
 
