@@ -106,6 +106,8 @@
       settings = {
         # Enable VA-API hardware video decoding (uses Intel iHD driver via LIBVA_DRIVER_NAME)
         "media.ffmpeg.vaapi.enabled" = true;
+        # Restore previous session (open tabs) on startup
+        "browser.startup.page" = 3;
         # Disable "ask to save passwords"
         "signon.rememberSignons" = false;
         # Disable "save and autofill payment methods"
