@@ -106,6 +106,10 @@
       settings = {
         # Enable VA-API hardware video decoding (uses Intel iHD driver via LIBVA_DRIVER_NAME)
         "media.ffmpeg.vaapi.enabled" = true;
+        # Disable "ask to save passwords"
+        "signon.rememberSignons" = false;
+        # Disable "save and autofill payment methods"
+        "extensions.formautofill.creditCards.enabled" = false;
       };
     };
   };
