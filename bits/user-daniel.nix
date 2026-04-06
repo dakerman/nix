@@ -182,7 +182,7 @@
 
   # Krohnkite tiling
   programs.plasma.configFile."kwinrc"."Plugins"."krohnkiteEnabled" = true;
-  programs.plasma.configFile."kwinrc"."Desktops"."Number" = 4;
+  programs.plasma.configFile."kwinrc"."Desktops"."Number" = 6;
 
   # Krohnkite gaps
   programs.plasma.configFile."kwinrc"."Script-krohnkite"."screenGapBetween" = 8;
@@ -192,18 +192,30 @@
   programs.plasma.configFile."kwinrc"."Script-krohnkite"."screenGapRight" = 8;
 
   programs.plasma.shortcuts = {
-    # Virtual desktop switching: Meta+1-4
+    # Free Meta+N from task manager so desktop switching works
+    "plasmashell"."activate task manager entry 1" = [ ];
+    "plasmashell"."activate task manager entry 2" = [ ];
+    "plasmashell"."activate task manager entry 3" = [ ];
+    "plasmashell"."activate task manager entry 4" = [ ];
+    "plasmashell"."activate task manager entry 5" = [ ];
+    "plasmashell"."activate task manager entry 6" = [ ];
+
+    # Virtual desktop switching: Meta+1-6
     "kwin"."Switch to Desktop 1" = "Meta+1";
     "kwin"."Switch to Desktop 2" = "Meta+2";
     "kwin"."Switch to Desktop 3" = "Meta+3";
     "kwin"."Switch to Desktop 4" = "Meta+4";
+    "kwin"."Switch to Desktop 5" = "Meta+5";
+    "kwin"."Switch to Desktop 6" = "Meta+6";
 
-    # Send window to virtual desktop: Meta+Ctrl+1-4
+    # Send window to virtual desktop: Meta+Ctrl+1-6
     # (Meta+Shift+Number broken on Swedish keyboard — Shift changes the keysym)
     "kwin"."Window to Desktop 1" = "Meta+Ctrl+1";
     "kwin"."Window to Desktop 2" = "Meta+Ctrl+2";
     "kwin"."Window to Desktop 3" = "Meta+Ctrl+3";
     "kwin"."Window to Desktop 4" = "Meta+Ctrl+4";
+    "kwin"."Window to Desktop 5" = "Meta+Ctrl+5";
+    "kwin"."Window to Desktop 6" = "Meta+Ctrl+6";
 
     # Close window
     "kwin"."Window Close" = "Meta+Q";
