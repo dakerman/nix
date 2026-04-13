@@ -186,6 +186,11 @@
   programs.plasma.configFile."kwinrc"."Plugins"."krohnkiteEnabled" = true;
   programs.plasma.configFile."kwinrc"."Desktops"."Number" = 6;
 
+  # Track focus per-screen so "Switch to Next/Previous Screen" (Meta+,/Meta+.)
+  # restores the last-focused window on the target screen instead of just
+  # moving the cursor.
+  programs.plasma.configFile."kwinrc"."Windows"."SeparateScreenFocus" = true;
+
   # Krohnkite gaps
   programs.plasma.configFile."kwinrc"."Script-krohnkite"."screenGapBetween" = 8;
   programs.plasma.configFile."kwinrc"."Script-krohnkite"."screenGapTop" = 8;
