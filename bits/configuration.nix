@@ -103,6 +103,15 @@
   # Install firefox.
   programs.firefox.enable = true;
 
+  # 1Password: CLI + desktop app. The GUI module sets up the polkit helper and
+  # adds the user to the onepassword group (required for browser integration
+  # and system auth prompts).
+  programs._1password.enable = true;
+  programs._1password-gui = {
+    enable = true;
+    polkitPolicyOwners = [ "daniel" ];
+  };
+
   # Nano settings
   programs.nano.nanorc = ''
     set linenumbers
