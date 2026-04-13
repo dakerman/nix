@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, pkgs-unstable, ... }:
 
 {
   home.username = "daniel";
@@ -7,6 +7,8 @@
 
   programs.vscode = {
     enable = true;
+    # Track unstable for newer VS Code releases (stable lags behind upstream).
+    package = pkgs-unstable.vscode;
     profiles.default = {
       extensions = with pkgs.vscode-extensions; [
         jnoortheen.nix-ide
