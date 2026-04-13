@@ -186,6 +186,11 @@
   programs.plasma.configFile."kwinrc"."Plugins"."krohnkiteEnabled" = true;
   programs.plasma.configFile."kwinrc"."Desktops"."Number" = 6;
 
+  # Dim inactive windows so the focused one stands out (title bars are hidden,
+  # so the usual focus cue isn't visible).
+  programs.plasma.configFile."kwinrc"."Plugins"."diminactiveEnabled" = true;
+  programs.plasma.configFile."kwinrc"."Effect-diminactive"."Strength" = 40;
+
   # Track focus per-screen so "Switch to Next/Previous Screen" (Meta+,/Meta+.)
   # restores the last-focused window on the target screen instead of just
   # moving the cursor.
