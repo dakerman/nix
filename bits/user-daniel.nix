@@ -10,6 +10,9 @@
     profiles.default = {
       extensions = with pkgs.vscode-extensions; [
         jnoortheen.nix-ide
+        # Loads per-project direnv envs into VS Code so language servers
+        # (gopls, etc.) find toolchains from flake/shell.nix dev shells.
+        mkhl.direnv
       ];
       userSettings = {
         "nix.formatterPath" = "nixfmt";
