@@ -94,6 +94,8 @@
     kdePackages.krohnkite
     nodejs_22
     pnpm
+    postman
+    awscli2
   ];
 
   home.sessionVariables = {
@@ -174,6 +176,12 @@
         key = "K";
         mods = "Super";
         chars = "\\u0015clear\\u000d";
+      }
+      # Shift+Enter → send ESC+CR so Claude Code (and other TUIs) treat it as newline
+      {
+        key = "Return";
+        mods = "Shift";
+        chars = "\\u001b\\r";
       }
     ];
   };
