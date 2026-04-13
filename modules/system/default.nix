@@ -1,6 +1,7 @@
 {
  imports = [
     ./bluetooth
+    ./docker
     ./fingerprint
     ./graphics
     ./power-management

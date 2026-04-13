@@ -138,7 +138,7 @@
     };
   };
 
-  virtualisation.docker.enable = true;
+  docker.enable = true;
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;

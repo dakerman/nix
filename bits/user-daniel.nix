@@ -92,6 +92,8 @@
   home.packages = with pkgs; [
     kdePackages.ksshaskpass
     kdePackages.krohnkite
+    nodejs_22
+    pnpm
   ];
 
   home.sessionVariables = {
