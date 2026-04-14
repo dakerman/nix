@@ -285,41 +285,47 @@
     "kwin"."KrohnkiteRotate" = "Meta+R"; # flip split direction in BTree
   };
 
-  # Minimal top panel
-  programs.plasma.panels = [
-    {
-      location = "top";
-      height = 32;
-      hiding = "normalpanel";
-      widgets = [
-        {
-          pager.general = {
-            displayedText = "desktopNumber";
-            showWindowOutlines = true;
-            showApplicationIconsOnWindowOutlines = false;
-          };
-        }
-        "org.kde.plasma.panelspacer"
-        {
-          systemTray.items = {
-            shown = [
-              "org.kde.plasma.battery"
-              "org.kde.plasma.networkmanagement"
-              "org.kde.plasma.volume"
-              "org.kde.plasma.bluetooth"
-              "org.kde.plasma.brightness"
-            ];
-          };
-        }
-        {
-          digitalClock = {
-            time.format = "24h";
-            calendar.firstDayOfWeek = "monday";
-          };
-        }
-      ];
-    }
-  ];
+  # Minimal top panel (on every screen)
+  programs.plasma.panels =
+    let
+      topPanel = screen: {
+        inherit screen;
+        location = "top";
+        height = 32;
+        hiding = "normalpanel";
+        widgets = [
+          {
+            pager.general = {
+              displayedText = "desktopNumber";
+              showWindowOutlines = true;
+              showApplicationIconsOnWindowOutlines = false;
+            };
+          }
+          "org.kde.plasma.panelspacer"
+          {
+            systemTray.items = {
+              shown = [
+                "org.kde.plasma.battery"
+                "org.kde.plasma.networkmanagement"
+                "org.kde.plasma.volume"
+                "org.kde.plasma.bluetooth"
+                "org.kde.plasma.brightness"
+              ];
+            };
+          }
+          {
+            digitalClock = {
+              time.format = "24h";
+              calendar.firstDayOfWeek = "monday";
+            };
+          }
+        ];
+      };
+    in
+    [
+      (topPanel 0) # laptop
+      (topPanel 1) # external monitor
+    ];
 
   # Hide title bars on all windows
   programs.plasma.window-rules = [
