@@ -149,6 +149,10 @@
 
   docker.enable = true;
 
+  # YubiKey support — smart card daemon + udev rules for non-root access
+  services.pcscd.enable = true;
+  services.udev.packages = [ pkgs.yubikey-personalization ];
+
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
@@ -161,6 +165,8 @@
     nixfmt-rfc-style
     pkgs-unstable.claude-code
     btop
+    usbutils # lsusb — useful for debugging USB devices
+    yubikey-manager # ykman — manage YubiKey modes, FIDO2 PINs, etc.
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
