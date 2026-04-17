@@ -152,6 +152,12 @@
     };
   };
 
+  # GitHub CLI
+  programs.gh = {
+    enable = true;
+    settings.git_protocol = "ssh";
+  };
+
   # Auto-load Nix dev environments when entering project directories
   programs.direnv = {
     enable = true;
