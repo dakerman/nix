@@ -20,6 +20,9 @@
   boot.loader.systemd-boot.configurationLimit = 20;
   boot.loader.efi.canTouchEfiVariables = true;
 
+  # Pin to 6.18 — the default 6.12 LTS hangs loading the xe (Lunar Lake) driver.
+  boot.kernelPackages = pkgs.linuxPackages_6_18;
+
   boot.initrd.luks.devices."luks-af657024-09f5-4039-9d50-8574d7726cbe".device =
     "/dev/disk/by-uuid/af657024-09f5-4039-9d50-8574d7726cbe";
   networking.hostName = "nixos"; # Define your hostname.

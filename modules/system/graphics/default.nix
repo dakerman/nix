@@ -64,10 +64,9 @@ with lib;
 
     hardware.cpu.intel.updateMicrocode = mkIf config.graphics.intel.enable true;
 
-    # Make the GPU driver available in initrd but don't force-load it.
-    # Forcing xe in initrd can hang Stage 1 on some kernel versions (e.g. 6.12+).
-    # The module still loads automatically when the hardware is detected.
-    boot.initrd.availableKernelModules = mkIf config.graphics.intel.enable (
+    # Early KMS for smoother boot.
+    # Arc/Lunar Lake uses the xe driver; legacy/modern Intel uses i915.
+    boot.initrd.kernelModules = mkIf config.graphics.intel.enable (
       if config.graphics.intel.generation == "arc" then [ "xe" ] else [ "i915" ]
     );
 
