@@ -17,7 +17,10 @@ with lib;
     virtualisation.docker.rootless = {
       enable = true;
       setSocketVariable = true;
-      daemon.settings = { features = { buildkit = true; }; };
+      daemon.settings = {
+        features = { buildkit = true; };
+        dns = [ "8.8.8.8" "8.8.4.4" ];
+      };
     };
   };
 }
