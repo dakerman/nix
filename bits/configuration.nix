@@ -34,6 +34,8 @@
 
   # Enable networking
   networking.networkmanager.enable = true;
+  # Temporary: needed to resolve bits.beer (staging)
+  networking.nameservers = [ "1.1.1.1" ];
 
   # Set your time zone.
   time.timeZone = "Europe/Stockholm";
