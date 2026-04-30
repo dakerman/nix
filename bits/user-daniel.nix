@@ -15,6 +15,8 @@
         # Loads per-project direnv envs into VS Code so language servers
         # (gopls, etc.) find toolchains from flake/shell.nix dev shells.
         mkhl.direnv
+        # Go language support: gopls, debugging, test runner, etc.
+        golang.go
       ];
       userSettings = {
         "nix.formatterPath" = "nixfmt";
@@ -22,6 +24,17 @@
           "editor.defaultFormatter" = "jnoortheen.nix-ide";
           "editor.formatOnSave" = true;
         };
+        "[go]" = {
+          "editor.defaultFormatter" = "golang.go";
+          "editor.formatOnSave" = true;
+        };
+        # Use gofumpt (stricter gofmt) as the formatter, matching team conventions
+        "go.useLanguageServer" = true;
+        "gopls" = {
+          "formatting.gofumpt" = true;
+        };
+        "go.lintTool" = "golangci-lint";
+        "go.lintOnSave" = "package";
       };
     };
   };
@@ -101,6 +114,11 @@
     pnpm
     postman
     awscli2
+    # Go tooling (used by VS Code golang.go extension)
+    gopls
+    gofumpt
+    golangci-lint
+    delve
   ];
 
   home.sessionVariables = {
