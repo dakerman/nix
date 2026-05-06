@@ -171,6 +171,7 @@
     btop
     usbutils # lsusb — useful for debugging USB devices
     yubikey-manager # ykman — manage YubiKey modes, FIDO2 PINs, etc.
+    d2 # declarative diagramming language (d2lang.com)
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
