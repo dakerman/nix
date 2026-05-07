@@ -375,6 +375,9 @@
       productId = "0028";
       rightClickMethod = "twoFingers";
       tapToClick = true;
+      # Prevent accidental drags from tap+slide (was picking up tabs/windows)
+      tapAndDrag = false;
+      tapDragLock = false;
       scrollMethod = "twoFingers";
       disableWhileTyping = true;
       accelerationProfile = "none";
