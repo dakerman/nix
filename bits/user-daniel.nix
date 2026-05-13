@@ -307,6 +307,8 @@
     "kwin"."KrohnkiteBTreeLayout" = "Meta+T";
     "kwin"."KrohnkiteMonocleLayout" = "Meta+F"; # fullscreen (one window)
     "kwin"."KrohnkiteRotate" = "Meta+R"; # flip split direction in BTree
+
+    "kwin"."MoveMouseToFocus" = "Meta+M"; # warp cursor to focused window
   };
 
   # Minimal top panel (on every screen)
