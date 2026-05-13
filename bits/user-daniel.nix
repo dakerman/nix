@@ -17,6 +17,8 @@
         mkhl.direnv
         # Go language support: gopls, debugging, test runner, etc.
         golang.go
+        # Render Mermaid diagrams in the built-in Markdown preview
+        bierner.markdown-mermaid
       ];
       userSettings = {
         "nix.formatterPath" = "nixfmt";
