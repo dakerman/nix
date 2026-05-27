@@ -121,7 +121,9 @@
     gofumpt
     golangci-lint
     delve
-    jetbrains.goland
+    # C compiler for cgo (required by runtime/cgo when GoLand runs `go test`)
+    gcc
+    (jetbrains.plugins.addPlugins jetbrains.goland [ "better-direnv" ])
   ];
 
   home.sessionVariables = {
