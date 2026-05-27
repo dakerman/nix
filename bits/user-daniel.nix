@@ -121,6 +121,7 @@
     gofumpt
     golangci-lint
     delve
+    jetbrains.goland
   ];
 
   home.sessionVariables = {
