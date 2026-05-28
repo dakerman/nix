@@ -123,7 +123,11 @@
     delve
     # C compiler for cgo (required by runtime/cgo when GoLand runs `go test`)
     gcc
-    (jetbrains.plugins.addPlugins jetbrains.goland [ "better-direnv" ])
+    (jetbrains.plugins.addPlugins jetbrains.goland [
+      "better-direnv"
+      # Render Mermaid diagrams in the Markdown preview
+      "mermaid"
+    ])
   ];
 
   home.sessionVariables = {
