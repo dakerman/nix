@@ -14,9 +14,12 @@ with lib;
     # Set DOCKER_HOST environment variable for rootless mode
     environment.sessionVariables.DOCKER_HOST = "unix:///run/user/1000/docker.sock";
 
+    virtualisation.docker.package = pkgs.docker_29;
+
     virtualisation.docker.rootless = {
       enable = true;
       setSocketVariable = true;
+      package = pkgs.docker_29;
       daemon.settings = {
         features = { buildkit = true; };
         dns = [ "8.8.8.8" "8.8.4.4" ];
