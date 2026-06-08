@@ -140,8 +140,16 @@
     profiles =
       let
         sharedSettings = {
-          # Enable VA-API hardware video decoding (uses Intel iHD driver via LIBVA_DRIVER_NAME)
+          # Enable VA-API hardware video decoding for normal playback, e.g. YouTube
+          # (uses Intel iHD driver via LIBVA_DRIVER_NAME).
           "media.ffmpeg.vaapi.enabled" = true;
+          # Hardware-decode WebRTC video (the codec used by video calls: Meet, Zoom
+          # web, Teams). Defaults to off on Linux, so without this, call video decodes
+          # on the CPU even though the pref above is set — this is the main video-call fix.
+          "media.navigator.mediadatadecoder_vpx_enabled" = true;
+          # Force HW decode even though Firefox hasn't allowlisted this brand-new GPU
+          # (Arc 140V / Lunar Lake); otherwise it can silently fall back to software.
+          "media.hardware-video-decoding.force-enabled" = true;
           # Restore previous session (open tabs) on startup
           "browser.startup.page" = 3;
           # Disable "ask to save passwords"
