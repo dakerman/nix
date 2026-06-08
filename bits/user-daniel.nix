@@ -135,6 +135,11 @@
     SSH_ASKPASS_REQUIRE = "prefer";
   };
 
+  # Claude Code's /doctor expects ~/.local/bin on PATH (where its native installer
+  # self-updates). We install claude-code via Nix, so this just silences that
+  # cosmetic warning.
+  home.sessionPath = [ "$HOME/.local/bin" ];
+
   programs.firefox = {
     enable = true;
     profiles =
