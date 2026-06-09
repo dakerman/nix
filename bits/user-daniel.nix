@@ -116,17 +116,17 @@
     pnpm
     postman
     awscli2
-    # Go tooling (used by VS Code golang.go extension)
-    gopls
-    gofumpt
-    golangci-lint
-    delve
     # C compiler for cgo (required by runtime/cgo when GoLand runs `go test`)
     gcc
-    (jetbrains.plugins.addPlugins jetbrains.goland [
-      "better-direnv"
-      # Render Mermaid diagrams in the Markdown preview
-      "mermaid"
+    (pkgs-unstable.jetbrains.plugins.addPlugins pkgs-unstable.jetbrains.goland [
+      (fetchzip {
+        url = "https://plugins.jetbrains.com/files/19275/355572/better_direnv-1.2.2-signed.zip";
+        hash = "sha256-hoFfIid7lClHDiT+ZH3H+tFSvWYb1tSRZH1iif+kWrM=";
+      })
+      (fetchzip {
+        url = "https://plugins.jetbrains.com/files/20146/811306/Mermaid-0.0.26_IJ.252.zip";
+        hash = "sha256-QTh77pyi4lh7V0DGPFx9kERjFCop219d76wTDwD0SYY=";
+      })
     ])
   ];
 
