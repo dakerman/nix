@@ -101,6 +101,7 @@
     extraGroups = [
       "networkmanager"
       "wheel"
+      "gamemode" # required for GameMode's process-priority boost (see modules/system/gaming)
     ];
   };
 
@@ -152,6 +153,9 @@
   };
 
   docker.enable = true;
+
+  # Steam + GameMode + Gamescope + MangoHud (modules/system/gaming)
+  gaming.enable = true;
 
   # YubiKey support — smart card daemon + udev rules for non-root access
   services.pcscd.enable = true;

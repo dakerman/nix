@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 with lib;
 
 {
@@ -11,7 +16,11 @@ with lib;
       enable = mkEnableOption "Intel graphics";
 
       generation = mkOption {
-        type = types.enum [ "legacy" "modern" "arc" ];
+        type = types.enum [
+          "legacy"
+          "modern"
+          "arc"
+        ];
         default = "modern";
         description = ''
           Intel GPU generation:
@@ -52,14 +61,20 @@ with lib;
           mangohud
         ]
         ++ (optionals (config.graphics.intel.enable && config.graphics.intel.generation == "legacy") [
-          intel-vaapi-driver  # LIBVA_DRIVER_NAME=i965
+          intel-vaapi-driver # LIBVA_DRIVER_NAME=i965
           intel-ocl
         ])
         ++ (optionals (config.graphics.intel.enable && config.graphics.intel.generation != "legacy") [
-          intel-media-driver  # LIBVA_DRIVER_NAME=iHD
+          intel-media-driver # LIBVA_DRIVER_NAME=iHD
           intel-compute-runtime
         ]);
-      extraPackages32 = with pkgs; [ mangohud ];
+      extraPackages32 =
+        with pkgs;
+        [ mangohud ]
+        ++ (optionals (config.graphics.intel.enable && config.graphics.intel.generation != "legacy") [
+          # VAAPI video decode for 32-bit apps (older games, Proton video playback)
+          driversi686Linux.intel-media-driver
+        ]);
     };
 
     hardware.cpu.intel.updateMicrocode = mkIf config.graphics.intel.enable true;
