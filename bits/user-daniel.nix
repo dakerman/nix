@@ -257,6 +257,10 @@
   programs.plasma.configFile."kwinrc"."Script-krohnkite"."screenGapLeft" = 8;
   programs.plasma.configFile."kwinrc"."Script-krohnkite"."screenGapRight" = 8;
 
+  # Keep Baloo (file search indexer) away from code repos — git/build churn in
+  # ~/workspace made it burn CPU re-indexing file contents constantly.
+  programs.plasma.configFile."baloofilerc"."General"."exclude folders" = "/home/daniel/workspace/";
+
   programs.plasma.shortcuts = {
     # Free Meta+N from task manager so desktop switching works
     "plasmashell"."activate task manager entry 1" = [ ];
