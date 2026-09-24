@@ -170,7 +170,7 @@
     slack
     git
     jq
-    nixfmt-rfc-style
+    nixfmt
     pkgs-unstable.claude-code
     btop
     usbutils # lsusb — useful for debugging USB devices

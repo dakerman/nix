@@ -31,7 +31,7 @@ nix fmt
 
 This is a NixOS flake configuration for a single host called `bits` (x86_64-linux).
 
-**Inputs:** `nixpkgs` (25.11 stable), `nixpkgs-unstable`, and `home-manager` (release-25.11).
+**Inputs:** `nixpkgs` (26.05 stable), `nixpkgs-unstable`, `home-manager` (release-26.05), and `plasma-manager`.
 
 **Entry point:** `flake.nix` → `bits/default.nix` constructs the `nixosSystem`, passing `pkgs-unstable` as a `specialArg` so it's available in any module as a parameter.
 

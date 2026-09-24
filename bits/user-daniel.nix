@@ -90,21 +90,23 @@
   programs.ssh = {
     enable = true;
     enableDefaultConfig = false;
-    matchBlocks = {
+    # settings replaces the deprecated matchBlocks (home-manager 26.05);
+    # keys are upstream ssh_config directive names
+    settings = {
       "github.com" = {
-        hostname = "github.com";
-        identityFile = "~/.ssh/id_ed25519_bits";
-        identitiesOnly = true;
-        addKeysToAgent = "yes";
+        HostName = "github.com";
+        IdentityFile = "~/.ssh/id_ed25519_bits";
+        IdentitiesOnly = true;
+        AddKeysToAgent = "yes";
       };
       "github-personal" = {
-        hostname = "github.com";
-        identityFile = "~/.ssh/id_rsa";
-        identitiesOnly = true;
-        addKeysToAgent = "yes";
+        HostName = "github.com";
+        IdentityFile = "~/.ssh/id_rsa";
+        IdentitiesOnly = true;
+        AddKeysToAgent = "yes";
       };
       "*" = {
-        addKeysToAgent = "yes";
+        AddKeysToAgent = "yes";
       };
     };
   };
@@ -137,6 +139,9 @@
 
   programs.firefox = {
     enable = true;
+    # Keep profiles in ~/.mozilla/firefox — 26.05 moved the default to
+    # $XDG_CONFIG_HOME; adopting it would mean migrating the profile dir.
+    configPath = ".mozilla/firefox";
     profiles =
       let
         sharedSettings = {
