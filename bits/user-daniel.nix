@@ -118,6 +118,8 @@
     pnpm
     postman
     awscli2
+    # magic-wormhole: send files between machines with a short code (`wormhole send <file>`)
+    magic-wormhole
     # C compiler for cgo (required by runtime/cgo when GoLand runs `go test`)
     gcc
     (pkgs-unstable.jetbrains.plugins.addPlugins pkgs-unstable.jetbrains.goland [
