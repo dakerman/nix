@@ -6,7 +6,12 @@ with lib;
     enable = mkEnableOption "Enable power management";
 
     cpuVendor = mkOption {
-      type = types.nullOr (types.enum [ "amd" "intel" ]);
+      type = types.nullOr (
+        types.enum [
+          "amd"
+          "intel"
+        ]
+      );
       default = null;
       description = ''
         CPU vendor for vendor-specific power settings.
@@ -47,9 +52,9 @@ with lib;
     # Lid close behavior.
     # KDE PowerDevil handles screen locking; logind handles suspend.
     services.logind.settings.Login = {
-      HandleLidSwitch = "suspend";              # Lid close on battery: suspend
+      HandleLidSwitch = "suspend"; # Lid close on battery: suspend
       HandleLidSwitchExternalPower = "suspend"; # Lid close on AC: suspend
-      HandleLidSwitchDocked = "ignore";         # Lid close when docked: ignore
+      HandleLidSwitchDocked = "ignore"; # Lid close when docked: ignore
     };
 
     # TLP conflicts with power-profiles-daemon (enabled by KDE Plasma by default)

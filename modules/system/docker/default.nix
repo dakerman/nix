@@ -1,8 +1,15 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 with lib;
 
 {
-  options.docker = { enable = mkEnableOption "Enable Docker"; };
+  options.docker = {
+    enable = mkEnableOption "Enable Docker";
+  };
 
   config = mkIf config.docker.enable {
 
@@ -21,8 +28,13 @@ with lib;
       setSocketVariable = true;
       package = pkgs.docker_29;
       daemon.settings = {
-        features = { buildkit = true; };
-        dns = [ "8.8.8.8" "8.8.4.4" ];
+        features = {
+          buildkit = true;
+        };
+        dns = [
+          "8.8.8.8"
+          "8.8.4.4"
+        ];
       };
     };
   };

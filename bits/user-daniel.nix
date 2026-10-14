@@ -120,6 +120,8 @@
     awscli2
     # magic-wormhole: send files between machines with a short code (`wormhole send <file>`)
     magic-wormhole
+    # wl-copy/wl-paste: Wayland clipboard CLI (lets Claude Code copy paste-ready text)
+    wl-clipboard
     # C compiler for cgo (required by runtime/cgo when GoLand runs `go test`)
     gcc
     (pkgs-unstable.jetbrains.plugins.addPlugins pkgs-unstable.jetbrains.goland [
@@ -133,6 +135,29 @@
       })
     ])
   ];
+
+  # User-level Claude Code instructions, applied in every repo. Terminal output
+  # hard-wraps lines and renders blockquotes as "▎", so paste-ready text goes
+  # to the clipboard instead. Read-only symlink: edit here, not in ~/.claude.
+  home.file.".claude/CLAUDE.md".text = ''
+    # Paste-ready output
+
+    When I ask for text I will paste somewhere else (GitHub/PR review comments,
+    Slack messages, PR descriptions, commit messages, emails) or a command for me
+    to run myself:
+
+    - Copy it to my clipboard with `wl-copy` (Wayland), using a quoted heredoc:
+      `wl-copy <<'EOF'` ... `EOF`. Write paragraphs as single unwrapped lines,
+      with no blockquote markers or extra indentation. Keep the Markdown the
+      destination renders (code spans, lists, links).
+    - Several separate items (e.g. multiple review comments): run one `wl-copy`
+      per item, in order, so each lands as its own entry in Klipper history
+      (Meta+V). Say which order they were copied in.
+    - Commands: copy as one line, joining steps with `&&` rather than
+      backslash continuations, unless the command is genuinely multi-line.
+    - Still show the text in the reply so I can read it, but say it is on the
+      clipboard.
+  '';
 
   home.sessionVariables = {
     SSH_ASKPASS = "${pkgs.kdePackages.ksshaskpass}/bin/ksshaskpass";

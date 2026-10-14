@@ -17,9 +17,10 @@
     };
   };
 
-  outputs = { nixpkgs, nixpkgs-unstable, ... }@inputs:
-  {
-      formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt;
+  outputs =
+    { nixpkgs, nixpkgs-unstable, ... }@inputs:
+    {
+      formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt-tree;
 
       nixosConfigurations = {
         bits = import ./bits/default.nix { inherit inputs; };
@@ -29,5 +30,5 @@
       #  "birgerrydback@bits" =
       #    mkHomeConfiguration ./hosts/bits/user-birgerrydback.nix;
       #};
-  };
+    };
 }
