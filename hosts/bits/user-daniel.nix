@@ -1,7 +1,7 @@
 # Home Manager for daniel on the work laptop. Shared config is in
 # modules/common/home.nix; this file has what only makes sense on this machine.
 
-{ ... }:
+{ pkgs, ... }:
 
 {
   home.stateVersion = "25.11";
@@ -19,7 +19,23 @@
       IdentitiesOnly = true;
       AddKeysToAgent = "yes";
     };
+    # The home desktop, over Tailscale (MagicDNS resolves the bare name).
+    # ForwardAgent: git and gh over there use this laptop's keys through the
+    # forwarded agent, so no keys are kept on the desktop.
+    desktop = {
+      HostName = "desktop";
+      User = "daniel";
+      IdentityFile = "~/.ssh/id_ed25519";
+      IdentitiesOnly = true;
+      ForwardAgent = true;
+    };
   };
+
+  # Edit code that lives on the desktop from here: "Remote-SSH: Connect to
+  # Host..." → desktop. The VS Code server it installs over there runs via nix-ld.
+  programs.vscode.profiles.default.extensions = [
+    pkgs.vscode-extensions.ms-vscode-remote.remote-ssh
+  ];
 
   # Hardware video decoding on the Arc 140V (Lunar Lake), for both profiles.
   programs.firefox.profiles =

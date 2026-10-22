@@ -14,6 +14,13 @@
   # Enable networking
   networking.networkmanager.enable = true;
 
+  # Tailscale: a private network between my machines, reachable from anywhere.
+  # Join a host once with `sudo tailscale up`; after that MagicDNS resolves the
+  # other hosts by name (`ssh desktop`). systemd-resolved is what tailscaled
+  # hands those names to; NetworkManager uses it as its resolver when enabled.
+  services.tailscale.enable = true;
+  services.resolved.enable = true;
+
   # Set your time zone.
   time.timeZone = "Europe/Stockholm";
 

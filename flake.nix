@@ -25,6 +25,7 @@
       # One host per directory under hosts/; lib/mk-host.nix builds each one.
       nixosConfigurations = nixpkgs.lib.genAttrs [
         "bits" # work laptop
+        "desktop" # home gaming PC: dual-boots Windows, GPU box for training the duck
       ] (import ./lib/mk-host.nix { inherit inputs; });
     };
 }

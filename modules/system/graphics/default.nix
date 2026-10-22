@@ -88,7 +88,7 @@ with lib;
     hardware.nvidia = mkIf config.graphics.nvidia {
       modesetting.enable = true;
       powerManagement.enable = true;
-      open = false;
+      open = mkDefault false; # closed kernel module; RTX-class hosts set hardware.nvidia.open = true
       nvidiaSettings = true;
       package = config.boot.kernelPackages.nvidiaPackages.stable;
     };
