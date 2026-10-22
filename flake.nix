@@ -18,17 +18,13 @@
   };
 
   outputs =
-    { nixpkgs, nixpkgs-unstable, ... }@inputs:
+    { nixpkgs, ... }@inputs:
     {
       formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt-tree;
 
-      nixosConfigurations = {
-        bits = import ./bits/default.nix { inherit inputs; };
-      };
-
-      #homeConfigurations = {
-      #  "birgerrydback@bits" =
-      #    mkHomeConfiguration ./hosts/bits/user-birgerrydback.nix;
-      #};
+      # One host per directory under hosts/; lib/mk-host.nix builds each one.
+      nixosConfigurations = nixpkgs.lib.genAttrs [
+        "bits" # work laptop
+      ] (import ./lib/mk-host.nix { inherit inputs; });
     };
 }

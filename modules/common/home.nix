@@ -1,9 +1,12 @@
+# Home Manager config for daniel that is the same on every host. lib/mk-host.nix
+# merges it with hosts/<name>/user-daniel.nix, which adds what is specific to
+# that machine (its stateVersion, SSH host blocks, input devices, ...).
+
 { pkgs, pkgs-unstable, ... }:
 
 {
   home.username = "daniel";
   home.homeDirectory = "/home/daniel";
-  home.stateVersion = "25.11";
 
   programs.vscode = {
     enable = true;
@@ -91,23 +94,10 @@
     enable = true;
     enableDefaultConfig = false;
     # settings replaces the deprecated matchBlocks (home-manager 26.05);
-    # keys are upstream ssh_config directive names
-    settings = {
-      "github.com" = {
-        HostName = "github.com";
-        IdentityFile = "~/.ssh/id_ed25519_bits";
-        IdentitiesOnly = true;
-        AddKeysToAgent = "yes";
-      };
-      "github-personal" = {
-        HostName = "github.com";
-        IdentityFile = "~/.ssh/id_rsa";
-        IdentitiesOnly = true;
-        AddKeysToAgent = "yes";
-      };
-      "*" = {
-        AddKeysToAgent = "yes";
-      };
+    # keys are upstream ssh_config directive names. Host blocks (GitHub, the
+    # other machines) are per host, in hosts/<name>/user-daniel.nix.
+    settings."*" = {
+      AddKeysToAgent = "yes";
     };
   };
 
@@ -172,19 +162,6 @@
     profiles =
       let
         sharedSettings = {
-          # Enable VA-API hardware video decoding for normal playback, e.g. YouTube
-          # (uses Intel iHD driver via LIBVA_DRIVER_NAME).
-          "media.ffmpeg.vaapi.enabled" = true;
-          # Hardware-decode VP8/VP9 WebRTC video (video calls: Meet, Zoom web, Teams).
-          # Default since Firefox 156; kept explicit so it survives a default change.
-          "media.navigator.mediadatadecoder_vpx_enabled" = true;
-          # Hardware-decode AV1 in WebRTC calls (Meet uses AV1). Off by default in
-          # Firefox 156; the Arc 140V has an AV1 decoder. Note: Firefox on Linux has no
-          # hardware *encoding* for calls, so the camera stream is still CPU-encoded.
-          "media.navigator.mediadatadecoder_av1_enabled" = true;
-          # Force HW decode even though Firefox hasn't allowlisted this brand-new GPU
-          # (Arc 140V / Lunar Lake); otherwise it can silently fall back to software.
-          "media.hardware-video-decoding.force-enabled" = true;
           # Restore previous session (open tabs) on startup
           "browser.startup.page" = 3;
           # Disable "ask to save passwords"
@@ -405,8 +382,8 @@
       };
     in
     [
-      (topPanel 0) # laptop
-      (topPanel 1) # external monitor
+      (topPanel 0)
+      (topPanel 1) # second screen, if any
     ];
 
   # Hide title bars on all windows
@@ -422,25 +399,6 @@
           apply = "force";
         };
       };
-    }
-  ];
-
-  # Plasma touchpad settings
-  programs.plasma.input.touchpads = [
-    {
-      name = "SNSL0028:00 2C2F:0028 Touchpad";
-      vendorId = "2c2f";
-      productId = "0028";
-      rightClickMethod = "twoFingers";
-      tapToClick = true;
-      # Prevent accidental drags from tap+slide (was picking up tabs/windows)
-      tapAndDrag = false;
-      tapDragLock = false;
-      scrollMethod = "twoFingers";
-      disableWhileTyping = true;
-      accelerationProfile = "none";
-      pointerSpeed = 0;
-      naturalScroll = true;
     }
   ];
 }
