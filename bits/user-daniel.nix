@@ -175,10 +175,13 @@
           # Enable VA-API hardware video decoding for normal playback, e.g. YouTube
           # (uses Intel iHD driver via LIBVA_DRIVER_NAME).
           "media.ffmpeg.vaapi.enabled" = true;
-          # Hardware-decode WebRTC video (the codec used by video calls: Meet, Zoom
-          # web, Teams). Defaults to off on Linux, so without this, call video decodes
-          # on the CPU even though the pref above is set — this is the main video-call fix.
+          # Hardware-decode VP8/VP9 WebRTC video (video calls: Meet, Zoom web, Teams).
+          # Default since Firefox 156; kept explicit so it survives a default change.
           "media.navigator.mediadatadecoder_vpx_enabled" = true;
+          # Hardware-decode AV1 in WebRTC calls (Meet uses AV1). Off by default in
+          # Firefox 156; the Arc 140V has an AV1 decoder. Note: Firefox on Linux has no
+          # hardware *encoding* for calls, so the camera stream is still CPU-encoded.
+          "media.navigator.mediadatadecoder_av1_enabled" = true;
           # Force HW decode even though Firefox hasn't allowlisted this brand-new GPU
           # (Arc 140V / Lunar Lake); otherwise it can silently fall back to software.
           "media.hardware-video-decoding.force-enabled" = true;
