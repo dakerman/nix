@@ -1,10 +1,20 @@
 # Home Manager for daniel on the desktop. Shared config is in
 # modules/common/home.nix; this file has what only makes sense on this machine.
 
-{ ... }:
+{ pkgs, ... }:
 
+let
+  wallpaper = "${pkgs.kdePackages.plasma-workspace-wallpapers}/share/wallpapers/ScarletTree";
+in
 {
   home.stateVersion = "26.05";
+
+  # Look different from the laptop at a glance (bits keeps the Breeze defaults):
+  # dark colors, red accent, red wallpaper on the desktop and the lock screen.
+  programs.plasma.workspace.colorScheme = "BreezeDark";
+  programs.plasma.workspace.wallpaper = wallpaper;
+  programs.plasma.kscreenlocker.appearance.wallpaper = wallpaper;
+  programs.plasma.configFile."kdeglobals"."General"."AccentColor" = "218,68,83";
 
   # Never suspend on idle: training runs for hours with nobody at the keyboard.
   # (Only relevant while someone is logged in to Plasma; the login screen and
