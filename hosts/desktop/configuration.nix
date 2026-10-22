@@ -16,7 +16,10 @@
   # finds the handle. Until then the shell is a menu entry of its own, and the
   # firmware's boot menu (F8/F11/F12) still boots Windows directly.
   boot.loader.systemd-boot.edk2-uefi-shell.enable = true;
-  # boot.loader.systemd-boot.windows."11".efiDeviceHandle = "HD0b"; # fill in (INSTALL.md step 6)
+  boot.loader.systemd-boot.windows."11".efiDeviceHandle = "HD0b"; # found via INSTALL.md step 6
+
+  # The monitor wakes late; give the menu time to be seen before the default boots.
+  boot.loader.timeout = 20;
 
   # Windows keeps the hardware clock in local time; do the same, or every switch
   # between the two systems shifts the clock by the UTC offset.
@@ -28,8 +31,8 @@
 
   # --- Hardware ----------------------------------------------------------------
 
-  # Two GeForce RTX 3060 Ti (modules/system/graphics: NVIDIA driver, CUDA via
-  # the driver's libcuda for the training wheels below).
+  # GeForce RTX 3060, 12 GB (modules/system/graphics: NVIDIA driver, CUDA via
+  # the driver's libcuda for the training wheels below). CPU: Ryzen 7 7700.
   graphics = {
     enable = true;
     nvidia = true;

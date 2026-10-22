@@ -4,7 +4,7 @@ What you end up with: Windows untouched on its own partitions and its own EFI
 partition, NixOS on new partitions with a second EFI partition, systemd-boot as
 the boot menu (NixOS by default, Windows one entry down), and the machine
 reachable from the laptop as `ssh desktop` over Tailscale. The config is
-`hosts/desktop/` in this repo.
+`hosts/desktop/` in this repo (done on 2026-10-22; kept as the record of how).
 
 Steps 1–3 happen on the desktop in Windows and its firmware, 4–6 on the desktop
 in NixOS, 7–8 from the laptop.
@@ -97,7 +97,7 @@ This downloads the NVIDIA driver and Plasma. **Reboot** afterwards: the new
 kernel and the nvidia module only load on a fresh boot. Then check:
 
 ```sh
-nvidia-smi          # both 3060 Ti listed
+nvidia-smi          # the RTX 3060 listed
 ```
 
 Commit the hardware file from the laptop later (`git add hosts/desktop`), or
@@ -172,9 +172,8 @@ Real runs live in tmux so they survive the SSH session:
 ```sh
 tmux new -s train
 uv run train Mjlab-Velocity-Flat-MicroDuck --env.scene.num-envs 4096
-# Ctrl-b d detaches; `tmux attach -t train` later. Second card, second window:
-CUDA_VISIBLE_DEVICES=1 uv run train <another task> --env.scene.num-envs 4096
-nvtop                   # what each GPU is doing
+# Ctrl-b d detaches; `tmux attach -t train` later.
+nvtop                   # what the GPU is doing
 ```
 
 Editing: in VS Code on the laptop, "Remote-SSH: Connect to Host..." →

@@ -45,7 +45,7 @@ This is a NixOS flake configuration for two x86_64-linux hosts, with one user (`
 
 **Hosts:**
 - `bits` — work laptop (Intel Core Ultra 7 258V / Arc 140V, LUKS). Hostname is still `nixos`.
-- `desktop` — home gaming PC dual-booting Windows (NixOS on its own partitions and EFI partition), two RTX 3060 Ti, used mostly headless over Tailscale (`ssh desktop`) as the GPU box for training the duck (`~/workspace/microduck_rl` there). `hosts/desktop/INSTALL.md` is the install and setup runbook; until the install, its `hardware-configuration.nix` is a placeholder.
+- `desktop` — home gaming PC dual-booting Windows (NixOS on its own partitions and EFI partition), Ryzen 7 7700 + one RTX 3060 (12 GB), used mostly headless over Tailscale (`ssh desktop`) as the GPU box for training the duck (`~/workspace/microduck_rl` there). `hosts/desktop/INSTALL.md` is the install and setup runbook (installed 2026-10-22).
 
 **Why the shared files are listed in `lib/mk-host.nix` rather than imported by the host files:** the module system orders list options (`environment.systemPackages`, `home.packages`) by where a module sits in the import tree. Listing them beside the host files keeps the `bits` closure identical to before the split. When refactoring, prove nothing changed with `nix eval --raw .#nixosConfigurations.bits.config.system.build.toplevel.drvPath` before and after (`nix run nixpkgs#nix-diff -- <old> <new>` explains a difference).
 
