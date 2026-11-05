@@ -149,6 +149,15 @@ programs.ssh.knownHosts.desktop = {
 sshd is reachable only over Tailscale (port 22 is closed on the LAN), and only
 with the laptop's key.
 
+Tailscale survives reboots on its own: `tailscale up` saves the login in
+`/var/lib/tailscale/tailscaled.state`, and tailscaled (a system service from
+`services.tailscale.enable`) reconnects at boot before anyone logs in. The one
+thing that takes a headless box off the tailnet is node-key expiry, 180 days
+after joining (`tailscale status --self --json | jq .Self.KeyExpiry`). sshd is
+tailnet-only, so an expired key means `sudo tailscale up` at the machine itself.
+Disable expiry once in the admin console (login.tailscale.com/admin/machines:
+the machine's menu, "Disable key expiry"); there is no Nix option for it.
+
 ## 8. Training on the desktop's GPUs
 
 The training code must run where the GPUs are, so `microduck_rl` gets a
