@@ -44,6 +44,12 @@
 
   docker.enable = true;
 
+  # nix-ld provides the /lib64 loader that NixOS lacks, so prebuilt binaries
+  # run. Needed for pnpm: a repo's `packageManager` field (e.g. web pins
+  # pnpm@12.15.0) makes the nixpkgs pnpm download that exact version, which is
+  # a generic-Linux executable.
+  programs.nix-ld.enable = true;
+
   # Steam + GameMode + Gamescope + MangoHud (modules/system/gaming)
   gaming.enable = true;
 
