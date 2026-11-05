@@ -21,6 +21,30 @@
   services.tailscale.enable = true;
   services.resolved.enable = true;
 
+  # Fleet status (github.com/Betongsuggan/launcher): every host serves its
+  # battery, disk, uptime, running system etc. as JSON on port 9099, on the
+  # tailscale interface only and socket-activated (nothing runs between
+  # requests). The laptop's fleet dashboard reads it. The fleet is defined once
+  # here; the keys are the tailnet names.
+  services.fleet-status = {
+    enable = true;
+    hosts = {
+      bits = {
+        address = "bits.tail08ae68.ts.net";
+        tailnetIp = "100.96.71.65";
+      };
+      desktop = {
+        address = "desktop.tail08ae68.ts.net";
+        tailnetIp = "100.90.249.44";
+        ssh = {
+          user = "daniel";
+          # The laptop's `desktop` ssh block (its key, agent forwarding)
+          command = "ssh desktop";
+        };
+      };
+    };
+  };
+
   # Set your time zone.
   time.timeZone = "Europe/Stockholm";
 

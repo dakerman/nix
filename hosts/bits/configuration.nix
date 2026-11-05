@@ -7,6 +7,10 @@
 {
   networking.hostName = "nixos"; # Define your hostname.
 
+  # This host's key in the fleet (modules/common): its tailnet name, not the
+  # hostname above
+  services.fleet-status.hostName = "bits";
+
   # Pin to 6.18 — the default 6.12 LTS hangs loading the xe (Lunar Lake) driver.
   boot.kernelPackages = pkgs.linuxPackages_6_18;
 

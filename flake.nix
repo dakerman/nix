@@ -15,6 +15,14 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.home-manager.follows = "home-manager";
     };
+
+    # Fleet dashboard (every host's status on one screen) and the vicinae
+    # launcher it draws its menus in: github.com/Betongsuggan/launcher
+    launcher = {
+      url = "github:Betongsuggan/launcher";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
+    };
   };
 
   outputs =

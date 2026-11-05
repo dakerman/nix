@@ -31,6 +31,7 @@ inputs.nixpkgs.lib.nixosSystem {
     (dir + "/hardware-configuration.nix")
     (dir + "/configuration.nix")
     inputs.home-manager.nixosModules.home-manager
+    inputs.launcher.nixosModules.default # services.fleet-status
 
     {
       home-manager = {
@@ -38,7 +39,10 @@ inputs.nixpkgs.lib.nixosSystem {
         useUserPackages = true;
         backupFileExtension = "backup";
         extraSpecialArgs = { inherit inputs pkgs-unstable; };
-        sharedModules = [ inputs.plasma-manager.homeModules.plasma-manager ];
+        sharedModules = [
+          inputs.plasma-manager.homeModules.plasma-manager
+          inputs.launcher.homeModules.default # programs.launcher (fleet dashboard)
+        ];
         users.daniel = import (dir + "/user-daniel.nix");
       };
     }

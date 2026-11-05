@@ -69,6 +69,27 @@
     commandLineArgs = [ "--ozone-platform-hint=auto" ];
   };
 
+  # Fleet dashboard: every host's status, with SSH and a "rebuild needed?"
+  # check per host. It draws its menus in vicinae, which this also installs
+  # and starts with the session. KWin isn't one of the compositors the module
+  # writes keybinds for, so the shortcut is a Plasma hotkey below.
+  programs.launcher = {
+    enable = true;
+    terminal = "alacritty -e"; # where the SSH action opens
+    fleet = {
+      enable = true; # hosts come from services.fleet-status (modules/common)
+      flake = "/home/daniel/workspace/nix";
+    };
+  };
+  programs.plasma.hotkeys.commands.fleet = {
+    name = "Fleet dashboard";
+    key = "Meta+G";
+    command = "launcher-menu fleet";
+  };
+  # Meta+G is KWin's Grid View by default, which wins the key; Overview
+  # (Meta+W) is still there
+  programs.plasma.shortcuts.kwin."Grid View" = [ ];
+
   # Plasma touchpad settings
   programs.plasma.input.touchpads = [
     {
