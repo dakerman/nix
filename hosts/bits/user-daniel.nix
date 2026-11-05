@@ -61,6 +61,14 @@
       private.settings = hwDecode;
     };
 
+  # Chromium for Notion: Notion's web app is far slower in Firefox than in
+  # Chromium-based browsers, and the Linux "desktop app" is Electron anyway.
+  programs.chromium = {
+    enable = true;
+    # Native Wayland instead of XWayland (sharper scaling, better input)
+    commandLineArgs = [ "--ozone-platform-hint=auto" ];
+  };
+
   # Plasma touchpad settings
   programs.plasma.input.touchpads = [
     {
