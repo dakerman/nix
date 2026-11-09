@@ -400,5 +400,24 @@
         };
       };
     }
+    # WoW's "Windowed Fullscreen" is just a screen-sized window, so the top panel
+    # stays above it. Force real fullscreen. Steam names the class after the
+    # (non-Steam) shortcut's app ID; the title tells it apart from Battle.net.
+    {
+      description = "World of Warcraft fullscreen";
+      match = {
+        window-class = {
+          value = "^steam_app_";
+          type = "regex";
+        };
+        title = "World of Warcraft";
+      };
+      apply = {
+        fullscreen = {
+          value = true;
+          apply = "force";
+        };
+      };
+    }
   ];
 }
