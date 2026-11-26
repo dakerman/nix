@@ -97,7 +97,7 @@ This downloads the NVIDIA driver and Plasma. **Reboot** afterwards: the new
 kernel and the nvidia module only load on a fresh boot. Then check:
 
 ```sh
-nvidia-smi          # the RTX 3060 listed
+nvidia-smi          # the RTX 5070 listed
 ```
 
 Commit the hardware file from the laptop later (`git add hosts/desktop`), or

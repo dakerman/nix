@@ -31,7 +31,7 @@
 
   # --- Hardware ----------------------------------------------------------------
 
-  # GeForce RTX 3060, 12 GB (modules/system/graphics: NVIDIA driver, CUDA via
+  # GeForce RTX 5070, 12 GB (modules/system/graphics: NVIDIA driver, CUDA via
   # the driver's libcuda for the training wheels below). CPU: Ryzen 7 7700.
   graphics = {
     enable = true;
